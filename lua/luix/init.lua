@@ -1,28 +1,23 @@
 local m = {}
 
 function m.parse(inputs, outputs)
-	local file = {}
-	local line = 1
+	local file = ""
 
-	file[line] = "{ "
+	file = file .. "{ "
 	for i = 1, #inputs - 1 do
-		file[line] = file[line] .. inputs[i] .. ", "
+		file = file .. inputs[i] .. ", "
 	end
-	file[line] = file[line] .. inputs[#inputs] .. " }: {"
+	file = file .. inputs[#inputs] .. " }: {\n"
 
 	if type(outputs.systemPackages) == "table" then
-		line = line + 1
-		file[line] = "    environment.systemPackages = with pkgs; ["
-		line = line + 1
+		file = file .. "    environment.systemPackages = with pkgs; [\n"
 		for i = 1, #outputs.systemPackages do
-			file[line] = "        " .. outputs.systemPackages[i]
-			line = line + 1
+			file = file .. "        " .. outputs.systemPackages[i] .. "\n"
 		end
-		file[line] = "    ];"
+		file = file .. "    ];\n"
 	end
 
-	line = line + 1
-	file[line] = "}"
+	file = file .. "}"
 	return file
 end
 
