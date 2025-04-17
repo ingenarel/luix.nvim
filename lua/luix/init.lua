@@ -21,9 +21,11 @@ function m.parse(inputs, outputs)
 	return file
 end
 
-function m.printFile(file)
-	for i = 1, #file do
-		print(file[i])
+function m.saveFile(contents, filePath)
+	local file = io.open(vim.fs.normalize(filePath), "w")
+	if file ~= nil then
+		file:write(contents)
+		file:close()
 	end
 end
 
