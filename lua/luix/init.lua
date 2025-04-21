@@ -17,7 +17,7 @@ function m.parse(inputs, outputs)
         file = file .. "    ];\n"
     end
 
-    file = file .. "}"
+    file = file .. "}\n"
     return file
 end
 
