@@ -14,14 +14,20 @@ function m.parse(inputs, outputs)
         for i = 1, #outputs.systemPackages do
             file = file .. "        " .. outputs.systemPackages[i] .. "\n"
         end
-        if type(outputs.systemPackages.python313Packages) == "table" and #outputs.systemPackages.python313Packages > 0 then
+        if
+            type(outputs.systemPackages.python313Packages) == "table"
+            and #outputs.systemPackages.python313Packages > 0
+        then
             file = file .. "        (pkgs.python313.withPackages (python313Packages: [\n"
             for i = 1, #outputs.systemPackages.python313Packages do
                 file = file .. "            " .. outputs.systemPackages.python313Packages[i] .. "\n"
             end
             file = file .. "        ]))\n"
         end
-        if type(outputs.systemPackages.python312Packages) == "table" and #outputs.systemPackages.python312Packages > 0 then
+        if
+            type(outputs.systemPackages.python312Packages) == "table"
+            and #outputs.systemPackages.python312Packages > 0
+        then
             file = file .. "        (pkgs.python312.withPackages (python312Packages: [\n"
             for i = 1, #outputs.systemPackages.python312Packages do
                 file = file .. "            " .. outputs.systemPackages.python312Packages[i] .. "\n"
